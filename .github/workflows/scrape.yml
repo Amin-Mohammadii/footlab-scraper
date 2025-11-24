@@ -1,7 +1,7 @@
 name: Test Scraping
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   scrape-test:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 lxml
+          pip install requests beautifulsoup4 lxml cloudscraper
 
       - name: Run scraping test
         run: |
