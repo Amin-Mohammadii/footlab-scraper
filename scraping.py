@@ -2,7 +2,15 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 scraper = cloudscraper.create_scraper()
-html = scraper.get("https://fbref.com/en/").text
+standings_url = "https://fbref.com/en/comps/9/Premier-League-Stats"
+response = scraper.get(standings_url)
 
-soup = BeautifulSoup(html, "html.parser")
+# Now you have the HTML
+html_content = response.text
+
+# Parse it
+soup = BeautifulSoup(html_content, 'html.parser')
+# Extract data as usual
+# tables = soup.find_all('table')
+# print(f"Found {len(tables)} tables")
 print(soup.prettify())
