@@ -22,4 +22,5 @@ jobs:
           pip install cloudscraper beautifulsoup4
 
       - name: Run scraper
-        run: python your_script_name.py
+        run: python scraping.py
+
