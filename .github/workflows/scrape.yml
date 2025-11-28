@@ -1,4 +1,4 @@
-name: Run Python Scraper
+name: Test Scraping
 
 on:
   push:
