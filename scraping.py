@@ -5,12 +5,23 @@ scraper = cloudscraper.create_scraper()
 standings_url = "https://fbref.com/en/comps/9/Premier-League-Stats"
 response = scraper.get(standings_url)
 
-# Now you have the HTML
-html_content = response.text
 
 # Parse it
-soup = BeautifulSoup(html_content, 'html.parser')
+soup = BeautifulSoup(response.text, 'html.parser')
+
 # Extract data as usual
 # tables = soup.find_all('table')
 # print(f"Found {len(tables)} tables")
-print(soup.prettify())
+standings_table = soup.select('table.stats_table')[0]
+links = standings_table.find_all('a')
+links = [l.get("href") for l in links]
+links = [l for l in links if '/squads/' in l]   
+team_urls = [f"https://fbref.com{l}" for l in links]
+print(team_urls)
+
+import csv
+
+with open("links.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    for item in team_urls:
+        writer.writerow([item])
